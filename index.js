@@ -1,5 +1,50 @@
 const addBudjet = document.getElementById("addBudjet");
+const budjetContainer = document.querySelector('.budjetContainer')
 document.addEventListener("DOMContentLoaded", showPieChart);
+
+let categoryList = [] 
+
+function initialLoad() {
+    if (!localStorage.getItem('categories')) { return }
+    categoryList = JSON.parse(localStorage.getItem('categories')).categoryList
+    updateUI()
+}
+
+function updateUI() {
+    let newInnerHTML = ''
+
+    categoryList.forEach((categoryElement, categoryIndex) => {
+        newInnerHTML += `
+        <div class="category">
+        <p>${categoryElement}</p>
+        <div class="btnContainer">
+            <button class="iconBtn" onclick="editTodo(${categoryIndex})">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button class="iconBtn" onclick="deleteTodo(${categoryIndex})">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </div>
+    </div>
+        `
+    })
+
+    budjetContainer.innerHTML = newInnerHTML
+
+    // to save to localstorage
+    localStorage.setItem('categories', JSON.stringify({ categoryList }))
+}
+
+function addCategory() {
+    const category = addBudjet.value
+    if (!category) {return}
+
+    console.log('added category: ', category)
+    categoryList.push(category)
+    addBudjet.value = ''
+    updateUI()
+
+}
 
 function showPieChart() {
     //check if all is working
@@ -70,9 +115,4 @@ function showPieChart() {
     `
 }
 
-function addCategory() {
-    const category = textarea.value
-    if (!category) {return}
-
-    console.log('added category: ', )
-}
+addBtn.addEventListener('click', addCategory)

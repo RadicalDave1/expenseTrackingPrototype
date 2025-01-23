@@ -61,7 +61,12 @@
             ></canvas>
     <div class="budjetContainer">
         <div class="budjet">
-            <textarea id="addBudjet" style="display: block; margin: 15px auto; max-width: 400px; color:gray" >Add Category...</textarea>
+            <form onsubmit = "return false">
+                <textarea id="addBudjet" style="display: block; margin: 15px auto; max-width: 400px; color:gray" >Enter Category...</textarea>
+                <button id = "addBtn">
+                    <p>Add Category</p>
+                </button>
+            </form>
             <ul id="pie-chart-legend"></ul>
             <table class="budjetTable">
             </table>
