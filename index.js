@@ -8,7 +8,6 @@ function initialLoad() {
     categoryList = JSON.parse(localStorage.getItem('categories')).categoryList
     updateUI()
 }
-
 initialLoad()
 
 function updateUI() {
@@ -30,10 +29,13 @@ function updateUI() {
         `
     })
 
+
     budjetContainer.innerHTML = newInnerHTML
 
     // to save to localstorage
     localStorage.setItem('categories', JSON.stringify({ categoryList }))
+
+    updatePieChart();
 }
 
 function addCategory() {
@@ -133,6 +135,33 @@ function showPieChart() {
     `
 
     budjetContainer.innerHTML = newInnerHTML
+}
+
+function updatePieChart() {
+    const colorList = []
+    colorList.push("Red","Green", "Blue", "Yellow", "Orange", "Light Blue", "Violet");
+    min = Math.ceil(0);
+    max = Math.floor(6);
+    oneInSeven = Math.floor(Math.random() * (6 - 0 + 1)) + 0;
+    categoryList.forEach(categoryElement => {
+        if (!categoryList) {return};
+        values.push($,{categoryElement}, colorList[oneInSeven]);
+    });
+    
+    showPieChart();
+    legend.innerHTML+=`
+    
+    <div class="legend-item">
+
+    <div class="legend-color" style="background-color:${values[values.length].color}"></div>
+    <div class="legend-lebel">Total amount: $${values[values.length].size}</div>
+
+    </div>
+    
+    `
+
+    budjetContainer.innerHTML = newInnerHTML
+     console.log(".pie-chart updated");
 }
 
 addBtn.addEventListener('click', addCategory)
