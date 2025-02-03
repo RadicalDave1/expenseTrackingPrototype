@@ -20,13 +20,6 @@
 
 <body>
     <!--Home Page-->
-    <!--Siderbar nav-->
-    <div class = "menu">
-       <a href="index.html"><i class="fa-solid fa-house"></i></a>
-       <a href="wallet.html"><i class="fa-solid fa-wallet"></i></a>
-       <a href="budjet.html"><i class="fa-solid fa-chart-pie"></i></a>
-       <a href="expenses.html"><i class="fa-solid fa-money-bill-trend-up"></i></a>
-    </div>
     <!--Title Icon-->'
     <h1 style="border-radius:15%; height: 200px; background-image: url(titleCrabs.png); background-repeat:no-repeat; background-position:center; background-size:cover;">Eugene Krab's Piggy Bank</h1>
     <!--Line-->
@@ -59,19 +52,32 @@
             height="400"
             style="border: 4px solid black; border-radius: 50%"
             ></canvas>
-    <div class="budjetContainer">
-        <div class="budjet">
-            <form onsubmit = "return false">
-                <textarea id="addBudjet" style="display: block; margin: 15px auto; max-width: 400px; color:gray" >Enter Category...</textarea>
-                <button id = "addBtn">
-                    <p>Add Category</p>
+        <form onsubmit = "return false">
+            <textarea id="addBudjet" style="display: block; margin: 15px auto; max-width: 400px; color:gray" >Enter Category...</textarea>
+            <button id = "addBtn">
+                <p>Add Category</p>
+            </button>
+        </form>
+        <section>
+            <h4>Current Categories . . . </h4>
+    <div class = "budjetContainer">
+    <!-- <div class = "category">
+            <p>This is a budjet category that I
+                have to budjet for. </p>
+            <div class="btnContainer">
+                <button class = "iconBtn">
+                    <i class="fa-solid fa-pen-to-square"></i>
                 </button>
-            </form>
-            <ul id="pie-chart-legend"></ul>
-            <table class="budjetTable">
-            </table>
-        </div> 
+                <button class = "iconBtn">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+        </div>-->
     </div>
+        </section>
+        <ul id="pie-chart-legend"></ul>
+        <table class="budjetTable">
+        </table>
     <!--Line-->
     <hr width="100%" size="2" color="black" noshade>
     <!--Expense Page-->

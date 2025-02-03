@@ -1,14 +1,15 @@
 const addBudjet = document.getElementById("addBudjet");
 const budjetContainer = document.querySelector('.budjetContainer')
 document.addEventListener("DOMContentLoaded", showPieChart);
-
-let categoryList = [] 
+ 
 
 function initialLoad() {
     if (!localStorage.getItem('categories')) { return }
     categoryList = JSON.parse(localStorage.getItem('categories')).categoryList
     updateUI()
 }
+
+initialLoad()
 
 function updateUI() {
     let newInnerHTML = ''
@@ -18,10 +19,10 @@ function updateUI() {
         <div class="category">
         <p>${categoryElement}</p>
         <div class="btnContainer">
-            <button class="iconBtn" onclick="editTodo(${categoryIndex})">
+            <button class="iconBtn" onclick="editCategory(${categoryIndex})">
                 <i class="fa-solid fa-pen-to-square"></i>
             </button>
-            <button class="iconBtn" onclick="deleteTodo(${categoryIndex})">
+            <button class="iconBtn" onclick="deleteCategory(${categoryIndex})">
                 <i class="fa-solid fa-trash-can"></i>
             </button>
         </div>
@@ -44,6 +45,23 @@ function addCategory() {
     addBudjet.value = ''
     updateUI()
 
+}
+
+function editCategory(index) {
+    addBudjet.value = categoryList[index]
+    categoryList = categoryList.filter((element, elementIndex) => {
+        if (index === elementIndex) { return false }
+        return true
+    })
+    updateUI()
+}
+
+function deleteCategory(index) {
+    categoryList = categoryList.filter((element, elementIndex) => {
+        if (index === elementIndex) { return false }
+        return true
+    })
+    updateUI()
 }
 
 function showPieChart() {
@@ -113,6 +131,8 @@ function showPieChart() {
     </div>
     
     `
+
+    budjetContainer.innerHTML = newInnerHTML
 }
 
 addBtn.addEventListener('click', addCategory)
